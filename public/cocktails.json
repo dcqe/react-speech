@@ -2,6 +2,7 @@
   {
     "iba": true,
     "name": "Vesper",
+    "synonyms": ["4"],
     "colors": "#D88317",
     "glass": "martini",
     "category": "Before Dinner Cocktail",
@@ -53,6 +54,7 @@
   {
     "iba": true,
     "name": "Rose",
+    "synonyms": ["rosé"],
     "colors": "#FE29BC",
     "glass": "martini",
     "ingredients": [

@@ -1,7 +1,3 @@
-
-
-
-
 // Create a SpeechRecognition object
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
 
@@ -32,6 +28,8 @@ recognition.onresult = (event) => {
     logElem.innerHTML = orderResult;
     if (orderResult !== "" && orderResult !== null && orderResult !== 0) {
         console.log(orderResult);
+        const order_result_element = document.getElementById('order-result-text');
+        order_result_element.innerHTML = `<div id="order-result-text" style="color: black">${orderResult}</div>`;
     }
 };
 
@@ -48,23 +46,37 @@ recognition.onstart = () => {
 }
 
 /////////////
+var cocktail_matrix;
+setGlobalVariable();
+async function setGlobalVariable() {
+    try {
+        const result = await get_all_cocktails_strings(); // Wait for the result of the async function
+        cocktail_matrix = result; // Set the global variable
+        console.log(cocktail_matrix); // Output: Async operation completed
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 function onTextChange(entireText) {//detect cocktail
+    let result;
     let trimmedText = entireText.trim();
     trimmedText = trimmedText.replace(",", "");
     console.log(trimmedText);
-    for (var i = 0; i < cocktailList.length; i++) {
-        var cocktail = cocktailList[i];
-        if (includedIn(cocktail, trimmedText)) {
-            return cocktail
+    console.log(cocktail_matrix);
+    for (let i = 0; i < cocktail_matrix.length; i++) {
+        const cocktail = cocktail_matrix[i];
+        if (containsAnyString(trimmedText, cocktail)) {
+            result = cocktail;
         }
     }
-    return null;
+    if (result !== undefined) {
+        return result[0];
+    } else {
+        return result;
+    }
 }
 
-function includedIn(cocktail, text) {
-    const lowerText = String(text).toLowerCase()
-    console.log(lowerText)
-    return lowerText.includes(cocktail.id) || lowerText.includes(String(cocktail.name).toLowerCase());
+function containsAnyString(str, array) {
+    return array.some(item => str.includes(item.toLowerCase()));
 }
-

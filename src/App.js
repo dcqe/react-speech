@@ -24,6 +24,4 @@ function App() {
   );
 }
 
-var cors = require('cors');
-
 export default App;
