@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 50px;
+}
+
+#transcription {
+    margin-top: 30px;
+    font-size: 24px;
+    color: #333;
+}
+
+.log {
+    font-size: 16px;
+    color: gray;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Two equal-width columns */
+    padding: 10px;
+    justify-content: center;
+    align-content: center;
+}
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+#canvas {
+    display: inline;
+    align-content: center;
+    justify-content: center;
+}
+
+#waveformCanvas {
+    display: block;
+    align-content: center;
+    justify-content: center;
+}
+
+#order-span {
+    display: table;
+}
+
+#order-result-container {
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+#youcurrentlyordered {
+    margin: 0.25em;
+}
+
+#order-result-text {
+    color: gray;
+}
+
