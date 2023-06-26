@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#000000"/>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
 
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
     />
 
-
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
 
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -29,45 +28,46 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Cocktail Browser</title>
-</head>
-<body>
+  </head>
+  <body>
+    <h1>Order processing via speech input.</h1>
 
-<h1>Order your drink</h1>
-<table>
-    Please say the name of your drink.
-</table>
-<canvas id="canvas" width="500" height="200"></canvas>
-<br>
-<div id="order-result-container">
-    <div id="youcurrentlyordered">You selected for order: </div>
-    <div id="order-result-text">nothing</div>
-</div>
+    <div id="first-line">
+      <div id="initial-user-request">
+        Please say the name of your drink.
+      </div>
+      <canvas id="waveformCanvas"></canvas>
+    </div>
 
+    <button id="order-now-button" style="visibility: hidden">
+      Click to confirm order.
+    </button>
+    <br />
 
-<h2>Microphone Transcription</h2>
-<div id="transcription"></div>
-<div id="log"></div>
+    <br />
+    <div id="order-result-container">
+      <div id="youcurrentlyordered">You selected for order:</div>
+      <div id="order-result-text">nothing</div>
+      <div id="confirm-order"></div>
+      <div id="engage-container"></div>
+      <div id="success-container"></div>
+    </div>
 
+    <h2>Microphone Transcription</h2>
+    <div id="transcription"></div>
+    <div id="log"></div>
 
-<script src="waveform.js"></script>
-<script src="file_fetch.js"></script>
-<script src="transcription.js"></script>
-<script src="cocktail_strings.js"></script>
+    <script src="waveform.js"></script>
+    <script src="file_fetch.js"></script>
+    <script src="transcription.js"></script>
+    <script src="debug_input.js"></script>
 
+    <br />
 
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
 
-<script>
-    console.log("================================================")
-</script>
-
-<br>
-
-
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root"></div>
-
-
-<!--
+    <!--
   This HTML file is a template.
   If you open it directly in the browser, you will see an empty page.
 
@@ -77,5 +77,5 @@
   To begin the development, run `npm start` or `yarn start`.
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
-</body>
+  </body>
 </html>
