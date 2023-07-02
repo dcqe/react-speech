@@ -69,4 +69,20 @@ h1 {
 
 #order-result-text {
   color: gray;
+  font-weight: bold;
+}
+
+
+
+
+#transcription-heading {
+    display: none;
+}
+
+#transcription {
+  display: none;
+}
+
+#log {
+  display: none;
 }

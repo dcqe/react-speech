@@ -70,39 +70,6 @@ const Topbar = ({ pride, classes }) => {
             </Typography>
           </Button>
         </div>
-        <Button
-          className={textBackgroundClass}
-          component={Link}
-          to="/cocktails"
-          color="inherit"
-        >
-          <SearchIcon />
-          <Hidden xsDown>
-            <Typography className={classes.menuButtonText}>Browse</Typography>
-          </Hidden>
-        </Button>
-        <Button
-          className={textBackgroundClass}
-          component={Link}
-          to="/my-bar"
-          color="inherit"
-        >
-          <DrinkIcon />
-          <Hidden xsDown>
-            <Typography className={classes.menuButtonText}>Bar</Typography>
-          </Hidden>
-        </Button>
-        <Button
-          className={textBackgroundClass}
-          component={Link}
-          to="/settings"
-          color="inherit"
-        >
-          <SettingsIcon />
-          <Hidden xsDown>
-            <Typography className={classes.menuButtonText}>Settings</Typography>
-          </Hidden>
-        </Button>
       </Toolbar>
     </AppBar>
   );

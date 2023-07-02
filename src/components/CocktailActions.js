@@ -26,35 +26,7 @@ const CocktailActions = ({
 }) => {
   return (
     <>
-      <Button
-        className={classes.button}
-        size="large"
-        color="secondary"
-        onClick={() => {
-          updateFavourites(removeOrAddItemFromArray(cocktail.slug, favourites));
-        }}
-      >
-        {favourites.includes(cocktail.slug) ? (
-          <UnFavouriteIcon />
-        ) : (
-          <FavouriteIcon />
-        )}
-        <ConditionalHidden hideOnXS={hideLabelOnXS}>
-          Favourite
-        </ConditionalHidden>
-      </Button>
-      <Button
-        component={Link}
-        to={`/cocktails/${cocktail.slug}`}
-        className={classes.button}
-        size="large"
-        color="secondary"
-      >
-        <ReadMoreIcon />
-        <ConditionalHidden hideOnXS={hideLabelOnXS}>
-          Learn More
-        </ConditionalHidden>
-      </Button>
+
     </>
   );
 };

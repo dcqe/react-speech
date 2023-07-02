@@ -5,6 +5,7 @@ import { loadDatabase } from "./utilities/db.utils";
 import { Provider } from "react-redux";
 import store from "./store";
 
+
 async function start() {
   await loadDatabase(store);
   ReactDOM.render(

@@ -91,59 +91,7 @@ const CocktailFilter = ({
 
   return (
     <Paper square={true} elevation={24} className={classes.filters}>
-      <TextField
-        label="Filter by name"
-        type="search"
-        defaultValue={nameFilter}
-        placeholder="Start typing cocktail name..."
-        className={classes.searchField}
-        margin="normal"
-        onChange={e => updateNameFilter(e.target.value)}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          )
-        }}
-      />
 
-      <Button
-        className={classes.filterButton}
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={openFilterMenu}
-      >
-        <FilterListIcon />
-        Add Filter
-      </Button>
-
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={closeFilterMenu}
-      >
-        {getRules().map((menuOption, idx) => {
-          return (
-            <MenuItem
-              disabled={activeFilters.includes(menuOption)}
-              key={idx}
-              onClick={() => addFilter(menuOption)}
-            >
-              {labelFor(menuOption)}
-            </MenuItem>
-          );
-        })}
-      </Menu>
-      <FilterChips />
-
-      <FilterDialog />
-
-      <div className={classes.cocktailCountContainer}>
-        Showing {pluralize("cocktail", filteredCocktails.length, true)}
-      </div>
     </Paper>
   );
 };
