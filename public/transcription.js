@@ -111,7 +111,6 @@ function checkForConfirmation(entireTranscript, orderIndex) {
     normalizedTranscript.lastIndexOf(normalizeText(engageString)) > orderIndex
   ) {
     finalizeOrder();
-    return true;
   }
 }
 
@@ -125,4 +124,8 @@ function finalizeOrder() {
   //display order success
   const successElement = document.getElementById("success-container");
   successElement.innerHTML = `<div id="success-container" style="font-size: 14px">You successfully ordered your drink. It should be ready shortly.</div>`;
+}
+
+function onOrderConfirmPress() {
+  finalizeOrder();
 }

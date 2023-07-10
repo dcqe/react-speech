@@ -63,4 +63,5 @@ function draw() {
 
   animationId = requestAnimationFrame(draw);
 }
+
 startRecording();

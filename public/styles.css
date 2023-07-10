@@ -45,6 +45,7 @@ h1 {
   justify-content: center;
   align-content: center;
 }
+
 .grid-item {
   display: flex;
   flex-direction: column;
@@ -72,11 +73,8 @@ h1 {
   font-weight: bold;
 }
 
-
-
-
 #transcription-heading {
-    display: none;
+  display: none;
 }
 
 #transcription {
