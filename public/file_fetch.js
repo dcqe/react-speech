@@ -1,3 +1,4 @@
+/*
 // Get the URL of the currently opened HTML file
 const currentURL = window.location.href;
 
@@ -29,6 +30,7 @@ for (const [key, value] of params) {
       console.error("Error:", error);
     });
 }
+  */
 
 async function get_all_cocktails_strings() {
   const cocktail_json_path = "cocktails.json";
@@ -38,11 +40,9 @@ async function get_all_cocktails_strings() {
   console.log(json_obj);
 
   let cocktail_string_matrix = [];
+  let this_cocktail_array;
   for (let i = 0; i < json_obj.length; i++) {
     this_cocktail_array = [];
-    console.log("adadf");
-    console.log(json_obj);
-    console.log(json_obj[i]["name"]);
     this_cocktail_array.push(json_obj[i]["name"]);
     var syns = json_obj[i]["synonyms"];
     if (syns !== undefined) {
@@ -52,7 +52,7 @@ async function get_all_cocktails_strings() {
     }
     cocktail_string_matrix.push(this_cocktail_array);
   }
-  //console.log(cocktail_string_matrix)
+  console.log(cocktail_string_matrix);
   return cocktail_string_matrix;
 }
 
