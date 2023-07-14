@@ -1,3 +1,5 @@
+let cocktail_matrix;
+
 // Create a SpeechRecognition object
 const recognition = new (window.SpeechRecognition ||
   window.webkitSpeechRecognition ||
@@ -30,10 +32,7 @@ recognition.onresult = event => {
   }
   entireTranscript = finalTranscript + interimTranscript;
   console.log(entireTranscript);
-
-  const transcriptionElement = document.getElementById("transcription");
-  transcriptionElement.innerHTML = `<div class="interim">${interimTranscript}</div><div class="final">${finalTranscript}</div>`;
-
+  
   let orderResultPair = onTextChange(entireTranscript);
   let orderIndex = orderResultPair[0];
   let orderResult = orderResultPair[1][0];
@@ -56,19 +55,13 @@ recognition.onend = () => {
 recognition.start();
 
 recognition.onstart = () => {
-  //const logElem = document.getElementById("log");
-  //logElem.innerHTML = `<div class="log">recognition started</div >`;
+  setGlobalVariable().then();
 };
 
-/////////////
-let cocktail_matrix;
-setGlobalVariable();
 
 async function setGlobalVariable() {
   try {
-    const result = await get_all_cocktails_strings(); // Wait for the result of the async function
-    cocktail_matrix = result; // Set the global variable
-    //console.log(cocktail_matrix); // Output: Async operation completed
+    cocktail_matrix = await get_all_cocktails_strings(); // Set the global variable
   } catch (error) {
     console.error(error);
   }
@@ -76,13 +69,7 @@ async function setGlobalVariable() {
 
 function onTextChange(entireText) {
   //returns cocktail name and last index of detection
-  //detect cocktail
-  //let trimmedText = entireText.trim();
-  //trimmedText = trimmedText.replace(",", "").replace("-", "");
   const normalizedText = normalizeText(entireText);
-  //console.log(normalizedText);
-  //console.log(cocktail_matrix);
-
   let allOccurrences = findIndexOfOccurrence(cocktail_matrix, normalizedText);
   if (allOccurrences.length === 0) {
     return [-1, [""]];
@@ -92,14 +79,14 @@ function onTextChange(entireText) {
 }
 
 function orderResultDetected(orderResult) {
-  //display order result
-  //console.log(orderResult);
   const order_result_element = document.getElementById("order-result-text");
   order_result_element.innerHTML = `<div id="order-result-text" style="color: black">${orderResult}</div>`;
 
   //ask for confirmation
   const confirmationElement = document.getElementById("confirm-order");
   confirmationElement.innerHTML = `<div id="confirm-order" style="font-size: 16px">Order detected! To receive your drink please confirm your order by saying: </div>`;
+  const confirmButton = document.getElementById("order-now-button");
+  confirmButton.style.display = 'inline';
   const engageElement = document.getElementById("engage-container");
   engageElement.innerHTML = `<div id="engage-container" style="font-size: 22px; font-weight: bold;">${engageString}</div>`;
 }
@@ -107,9 +94,7 @@ function orderResultDetected(orderResult) {
 function checkForConfirmation(entireTranscript, orderIndex) {
   let normalizedTranscript = normalizeText(entireTranscript);
   //check if engage was mentioned after latest cocktail
-  if (
-    normalizedTranscript.lastIndexOf(normalizeText(engageString)) > orderIndex
-  ) {
+  if (normalizedTranscript.lastIndexOf(normalizeText(engageString)) > orderIndex) {
     finalizeOrder();
   }
 }
@@ -120,6 +105,8 @@ function finalizeOrder() {
   confirmationElement.innerHTML = `<div id="confirm-order" style="font-size: 16px"></div>`;
   const engageElement = document.getElementById("engage-container");
   engageElement.innerHTML = `<div id="engage-container" style="font-size: 22px; font-weight: bold;"></div>`;
+  const confirmButton = document.getElementById("order-now-button");
+  confirmButton.style.display = 'none';
 
   //display order success
   const successElement = document.getElementById("success-container");
