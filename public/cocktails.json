@@ -1328,6 +1328,7 @@
   {
     "iba": true,
     "name": "Caipirinha",
+    "synonyms": ["Kai pirinya", "kaipirinya", "kaip"],
     "colors": ["#4A8C03", "#e7ea96", "#f3f9ed"],
     "glass": "old-fashioned",
     "category": "All Day Cocktail",
