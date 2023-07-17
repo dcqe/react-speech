@@ -30,29 +30,30 @@
     <title>Cocktail Ordering</title>
   </head>
   <body>
-
-    <div id="first-line">
-      <div id="initial-user-request">
-        Please say the name of your drink.
+    <div id="top-container">
+      <div id="first-line">
+        <div id="initial-user-request">
+          Please say the name of your drink.
+        </div>
+        <canvas id="waveformCanvas"></canvas>
       </div>
-      <canvas id="waveformCanvas"></canvas>
+
+      <div id="order-result-container">
+        <div id="youcurrentlyordered">You selected for order:</div>
+        <div id="order-result-text">nothing</div>
+        <div id="confirm-order"></div>
+        <div id="engage-container"></div>
+        <div id="success-container"></div>
+      </div>
     </div>
 
-    <button id="order-now-button"
+    <button
+      id="order-now-button"
       style="display: none"
-      onclick="onOrderConfirmPress()">
+      onclick="onOrderConfirmPress()"
+    >
       Click to confirm order.
     </button>
-
-    <div id="order-result-container">
-      <div id="youcurrentlyordered">You selected for order:</div>
-      <div id="order-result-text">nothing</div>
-      <div id="confirm-order"></div>
-      <div id="engage-container"></div>
-      <div id="success-container"></div>
-    </div>
-
-
 
     <script src="waveform.js"></script>
     <script src="file_fetch.js"></script>

@@ -84,3 +84,7 @@ h1 {
 #log {
   display: none;
 }
+
+#top-container {
+  display: flex;
+}
