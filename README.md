@@ -1,57 +1,53 @@
-# Cocktails Browser
+# Usage
+1. Go to https://lehre.bpm.in.tum.de/~ge47qut/v3/build/
+2. [Optional] Click the cocktail browser button to check what cocktails are available
+3. Say the name of your favorite cocktail (note comments below)
+4. Say "engage" to complete/confirm the order
+5. Done, a message has been sent to the process engine
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4aecd7d0-e759-4866-8717-b4b09f8cbb16/deploy-status)](https://app.netlify.com/sites/iba-cocktails/deploys)
-[![Build Status](https://travis-ci.org/mikeyhogarth/cocktails.svg?branch=master)](https://travis-ci.org/mikeyhogarth/cocktails)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/561bedec36224121a246675b673b872f)](https://www.codacy.com/app/mikeyhogarth/cocktails?utm_source=github.com&utm_medium=referral&utm_content=mikeyhogarth/cocktails&utm_campaign=Badge_Grade)
-[![GitHub license](https://img.shields.io/github/license/mikeyhogarth/cocktails.svg)](https://github.com/mikeyhogarth/cocktails/blob/master/LICENSE)
 
-![Screenshot](/public/Screenshot.png?raw=true)
+### Issue fixes
 
-Deployed at https://iba-cocktails.netlify.com/
+Firstly, you have to have a microphone connected and allow the website to use it.
 
-This provides a user interface for browsing and filtering the [IBA cocktails list](https://en.wikipedia.org/wiki/List_of_IBA_official_cocktails) (and a couple of other popular drinks). Features include;
+If you are using Firefox webspeech is disabled by default, so you may need to set the appropiate flags in _**about:config**_. 
 
-- Browse all 77 IBA cocktails, plus a few non-IBA drinks.
-- Maintain your bar to describe what you have at home.
-- Filter by ingredient, category, glass, vegan or "makeable from your bar"
-- Ability to "favourite" cocktails
-- Integration with [TheCocktailDB](https://www.thecocktaildb.com/) for enrichment/cocktail images
-- Persistence (local browser storage only)
-- Configurable color schemes
-- See measurements in either parts, ml, cl or oz
-- Pro-mode! Have measurements replaced with 'bartender lingo' such as 'Jigger' and 'Pony'
-- Installable on smart devices (via PWA/Add To Home Screen)
+_**media.webspeech.recognition.enable**_
+_**media.webspeech.recognition.force_enable**_
+_**media.webspeech.synth.enabled**_
 
-This is a small pet-project and a _work in progress_. It is built entirely using functional components and react hooks.
+Using Firefox Nightly version 72 or newer supports it ([[1]](https://wiki.mozilla.org/Web_Speech_API_-_Speech_Recognition), [[2]](https://stackoverflow.com/questions/39784986/speechrecognition-is-not-working-in-firefox)). 
 
-## Credits
+Chrome and Chromium based browsers should support it by default.
 
-Cocktail list and ingredient data was originally seeded from https://github.com/teijo/iba-cocktails
+### Comment
+You may also access the previous version at https://lehre.bpm.in.tum.de/~ge47qut/cocktail/
 
-Enrichment and images provided by the amazing [CocktailDB](https://www.thecocktaildb.com/)
 
-Application is hosted over at [netlify](https://www.netlify.com/) - _awesome_ service
 
-## Tech stuff / Local Usage
 
-If you want to run this locally you'll need `nodejs`/`npm` installed. Clone the repo, then;
 
+
+# Install
+Due to react file linkage and reference problems, the same set of files cannot both be run locally and on the server. This is why there are two repositories.
+1. https://github.com/dcqe/static-speech/
+2. https://github.com/dcqe/react-speech/
+
+The first one is minimally newer (it fixes the bug in which the process engine is continually notified about the same cocktail being ordered) whereas the second one is the only one that can be run locally. To see which repo you are currently viewing, see the URL.
+
+
+To run it on your local machine, execute the following commands with [nodejs](https://nodejs.org/en) and [npm](https://www.npmjs.com/) installed.
 ```
 npm install
-npm start
+http-server
+```
+and then open
+```
+http://127.0.0.1:8080
 ```
 
-All the data is in JSON files (see `src/data`), so there's no server or database to worry about.
 
-## Contributing
+# Lab report (short version)
+This section is a short overview over the project. A more in depth review (with references) can be found in <tt>`/lab-report.pdf`</tt>.
 
-If you have a comment about one of the recipes / a data related issue, feel free to raise an issue and label it 'data'. It's just an unfortunate fact of life that cocktail recipes will vary and what some people think is good, others will not, but we're happy to correct blatant mistakes.
-
-Take the labels "Help Wanted" or "Good first issue" as an open invitation to pick tickets up if you want to, but if they don't have those labels then please get in touch to discuss any change before contributing.
-
-- Assign yourself to a ticket if you're working on it.
-- If there's not already an open ticket, but you have a suggestion, please raise as an issue and discuss prior to doing any work.
-- We're not doing versioning yet so don't worry about bumping versions/changelogs.
-- We've got [Snapshot Testing](https://jestjs.io/docs/en/snapshot-testing) going on in this app, remember to update them if you change the views.
-- Don't check in `package-lock` unless `package.json` has changed.
-- This is a function-component-only project.
+The system features speech recognition via a SpeechRecognition object that is automatically instantiated depending on the browsers implemented interface. This facilitates the creation of a transcript of everything being spoken into the microphone. Additionally, on page load the CSV file of all available cocktails is being parsed. With that, on every speech event the text is being checked if it contains the name of any cocktail or one of its synonyms. If that is the case, the cocktail name is sent to the process engine. 
